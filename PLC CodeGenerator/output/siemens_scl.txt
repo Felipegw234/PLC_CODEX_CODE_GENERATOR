@@ -1,0 +1,32 @@
+(* ================================================================================ *)
+(* Código SCL Gerado Automaticamente *)
+(* Data: 2025-11-14 13:21:56 *)
+(* ================================================================================ *)
+
+REGION Step 00 - Idle
+    IF #MyStepFlag.Step000 THEN
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 01 - Ativar
+    IF #MyStepFlag.Step001 THEN
+        "VOC562034".activate := TRUE;
+        "PSV562035".activateUL := TRUE;
+        "PSV562035".activateLL := TRUE;
+        "CIP_TO_ENCH_BYPASS".activate := TRUE;
+        "LCV562001".activate := TRUE;
+        "B562003".activate := TRUE;
+        "LIC562003".closeloop := TRUE;
+        "FIC562001".fixedoutput := TRUE;
+        "LIC562004_Control".closeloop := TRUE;
+        "FIQ562001_Dosagem".ResetTotalizer := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 02 - Desativar
+    IF #MyStepFlag.Step002 THEN
+        RETURN;
+    END_IF;
+END_REGION ;

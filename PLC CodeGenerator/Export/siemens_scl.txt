@@ -1,0 +1,255 @@
+(* ================================================================================ *)
+(* Código SCL Gerado Automaticamente *)
+(* Data: 2025-11-12 16:52:25 *)
+(* ================================================================================ *)
+
+REGION Step 10 - Esvaziar BTD
+    IF #MyStepFlag.Step010 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 15 - Encher Sistema
+    IF #MyStepFlag.Step015 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_AGUA" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 16 - Enxague enchedora
+    IF #MyStepFlag.Step016 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_AGUA" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 20 - Aquecimento e estabilização
+    IF #MyStepFlag.Step020 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 21 - Aquecimento enchedora
+    IF #MyStepFlag.Step021 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 25 - Esvaziar BTD
+    IF #MyStepFlag.Step025 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 26 - Encher o BTD
+    IF #MyStepFlag.Step026 THEN
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 27 - Empurre Agua com Produto
+    IF #MyStepFlag.Step027 THEN
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 30 - Recirculação
+    IF #MyStepFlag.Step030 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_PROD" := TRUE;
+        "PAST_TO_ENCH_ENABLE_PRODUCT" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 35 - Envasando
+    IF #MyStepFlag.Step035 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_PROD" := TRUE;
+        "PAST_TO_ENCH_ENABLE_PRODUCT" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 40 - Crash Cooling
+    IF #MyStepFlag.Step040 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PAST_TO_ENCH_IN_CRASH_COOLING" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 45 - Esvaziar BTD
+    IF #MyStepFlag.Step045 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 46 - Drenagem BTD
+    IF #MyStepFlag.Step046 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 50 - Empurre final
+    IF #MyStepFlag.Step050 THEN
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_PAST_AQ_REQ_START" := TRUE;
+        "PH_PAST_RES_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_AGUA" := TRUE;
+        "PH_PAST_REC_REQ_CONTROL" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 51 - Aguardando Enxague
+    IF #MyStepFlag.Step051 THEN
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 55 - Enxague
+    IF #MyStepFlag.Step055 THEN
+        "PH_BTD_ENT_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_AGUA" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 56 - Esvaziamento
+    IF #MyStepFlag.Step056 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 57 - Drenagem final
+    IF #MyStepFlag.Step057 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 80 - Em coleta de amostra
+    IF #MyStepFlag.Step080 THEN
+        "PH_BTD_REC_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        "PAST_TO_BLENDER_AGUA" := TRUE;
+        "FIC562003" := TRUE;
+        "FIC562003" := TRUE;
+        "B562007" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;
+
+REGION Step 81 - Drenagem pos amostra
+    IF #MyStepFlag.Step081 THEN
+        "PH_BTD_DRENO_REQ_START" := TRUE;
+        "PH_PAST_REC_REQ_START" := TRUE;
+        "PH_BTD_EMP_REQ_START" := TRUE;
+        RETURN;
+    END_IF;
+END_REGION ;

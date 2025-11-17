@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Código PLC - GEA</title>
+
+    <!-- Tabler CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta19/dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet"/>
+
+    <!-- GEA Core CSS (interno) -->
+    <style>
+        /* GEA Design System */
+        :root {
+            /* Cores Primárias GEA */
+            --gea-primary: #0303B8;
+            --gea-primary-rgb: 3, 3, 184;
+            --gea-secondary: #000F41;
+            --gea-secondary-rgb: 0, 15, 65;
+
+            /* Cores de Destaque GEA */
+            --gea-active-blue: #1F9DFF;
+            --gea-active-blue-rgb: 31, 157, 255;
+            --gea-active-green: #1AFF80;
+            --gea-active-green-rgb: 26, 255, 128;
+            --gea-energetic-pink: #FF80FF;
+            --gea-energetic-pink-rgb: 255, 128, 255;
+
+            /* Cores Neutras GEA */
+            --gea-white: #FFFFFF;
+            --gea-white-rgb: 255, 255, 255;
+            --gea-surface: #F5F5F5;
+            --gea-surface-contrast: #ffffff;
+            --gea-border: #DCDCDC;
+            --gea-text-primary: #141414;
+            --gea-text-secondary: #505050;
+            --gea-text-muted: #646464;
+            --gea-text-primary-darkbg: #ffffff;
+            --gea-text-secondary-darkbg: rgba(255,255,255,.75);
+
+            /* Tipografia */
+            --font-family-gea: "Segoe UI","Segoe UI Web (West European)",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+        }
+
+        /* Light Mode - Footer */
+        footer,
+        .footer {
+            background-color: var(--gea-secondary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        footer span,
+        .footer span {
+            color: var(--gea-white) !important;
+        }
+
+        /* Light Mode - Modal Footer */
+        .modal-footer {
+            background-color: var(--gea-secondary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        .modal-footer span,
+        .modal-footer .text-white {
+            color: var(--gea-white) !important;
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            /* Cores Neutras Dark Mode */
+            --gea-surface: #141414;
+            --gea-surface-contrast: #1E1E1E;
+            --gea-white: #FFFFFF;
+            --gea-border: #2D2D2D;
+            --gea-text-primary: #FFFFFF;
+            --gea-text-secondary: rgba(255, 255, 255, 0.75);
+            --gea-text-muted: rgba(255, 255, 255, 0.55);
+
+            /* Ajustes para componentes escuros */
+            --gea-card-bg: #1E1E1E;
+            --gea-input-bg: #2D2D2D;
+            --gea-input-border: #3D3D3D;
+        }
+
+        /* Aplicar cores de dark mode nos componentes */
+        [data-theme="dark"] body {
+            background-color: var(--gea-surface);
+            color: var(--gea-text-primary);
+        }
+
+        [data-theme="dark"] .page {
+            background-color: var(--gea-surface);
+        }
+
+        [data-theme="dark"] .card {
+            background-color: var(--gea-card-bg);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--gea-border);
+        }
+
+        [data-theme="dark"] .card-title {
+            color: var(--gea-white);
+        }
+
+        [data-theme="dark"] .card-header {
+            background-color: var(--gea-active-blue) !important;
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .navbar {
+            background-color: var(--gea-active-blue) !important;
+        }
+
+        [data-theme="dark"] .navbar-footer {
+            background-color: var(--gea-active-blue) !important;
+        }
+
+        [data-theme="dark"] footer,
+        [data-theme="dark"] .footer {
+            background-color: var(--gea-active-blue) !important;
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .footer.footer-transparent {
+            background-color: var(--gea-active-blue) !important;
+        }
+
+        [data-theme="dark"] footer span,
+        [data-theme="dark"] .footer span {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .form-control,
+        [data-theme="dark"] .form-select {
+            background-color: var(--gea-input-bg);
+            border-color: var(--gea-input-border);
+            color: var(--gea-text-primary);
+        }
+
+        [data-theme="dark"] .form-control:focus,
+        [data-theme="dark"] .form-select:focus {
+            background-color: var(--gea-input-bg);
+            color: var(--gea-text-primary);
+        }
+
+        [data-theme="dark"] .table {
+            color: var(--gea-text-primary);
+            border-color: var(--gea-border);
+        }
+
+        [data-theme="dark"] .table th,
+        [data-theme="dark"] .table td {
+            border-color: var(--gea-border);
+        }
+
+        [data-theme="dark"] .modal-content {
+            background-color: var(--gea-card-bg);
+            border-color: var(--gea-border);
+        }
+
+        [data-theme="dark"] .modal-header {
+            background-color: var(--gea-active-blue) !important;
+            border-color: var(--gea-border);
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .modal-header .modal-title {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="dark"] .modal-footer {
+            background-color: var(--gea-active-blue) !important;
+            border-color: var(--gea-border);
+        }
+
+        [data-theme="dark"] .modal-body label,
+        [data-theme="dark"] .modal-body .form-label {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .modal-body .form-check-label {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .alert-info {
+            background-color: rgba(var(--gea-active-blue-rgb), 0.15);
+            border-color: var(--gea-active-blue);
+            color: var(--gea-active-blue);
+        }
+
+        [data-theme="dark"] .bg-light {
+            background-color: #252525 !important;
+        }
+
+        [data-theme="dark"] .text-muted {
+            color: var(--gea-text-muted) !important;
+        }
+
+        /* Regras de Filtragem - Card */
+        [data-theme="dark"] .bg-light .card-header h4,
+        [data-theme="dark"] .bg-light .card-header .card-title {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .bg-light .card-body span,
+        [data-theme="dark"] .bg-light .card-body li,
+        [data-theme="dark"] .bg-light .card-body ul {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .bg-light .card-body strong {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .bg-light .card-body table,
+        [data-theme="dark"] .bg-light .card-body table th,
+        [data-theme="dark"] .bg-light .card-body table td {
+            color: var(--gea-white) !important;
+        }
+
+        /* Dark Mode - Tabelas de Mapeamento e Legendas */
+        [data-theme="dark"] .table thead,
+        [data-theme="dark"] .bg-light .card-body .table thead {
+            background-color: var(--gea-active-blue) !important;
+        }
+
+        [data-theme="dark"] .table thead th,
+        [data-theme="dark"] .bg-light .card-body .table thead th {
+            color: var(--gea-white) !important;
+            background-color: var(--gea-active-blue) !important;
+        }
+
+        [data-theme="dark"] pre {
+            background-color: #0D1117 !important;
+            border-color: var(--gea-border);
+        }
+
+        [data-theme="dark"] label,
+        [data-theme="dark"] p,
+        [data-theme="dark"] .text-secondary {
+            color: var(--gea-white) !important;
+        }
+
+        [data-theme="dark"] .form-label {
+            color: var(--gea-white) !important;
+        }
+
+        /* Theme Toggle Buttons */
+        .theme-toggle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.375rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body, html {
+            height: 100%;
+            font-family: var(--font-family-gea);
+        }
+
+        body {
+            background-color: var(--gea-surface);
+            color: var(--gea-text-primary);
+        }
+
+        .page {
+            background-color: var(--gea-surface);
+        }
+
+        /* Header */
+        .navbar {
+            background-color: var(--gea-secondary) !important;
+            box-shadow: 0 2px 4px rgba(0, 15, 65, 0.1);
+            min-height: 56px;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .gea-logo {
+            height: 24px;
+            width: auto;
+        }
+
+        .navbar-text {
+            color: var(--gea-text-secondary-darkbg) !important;
+        }
+
+        /* Botões */
+        .btn-primary {
+            background-color: var(--gea-primary) !important;
+            border-color: var(--gea-primary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(3, 3, 184, 0.9) !important;
+            border-color: rgba(3, 3, 184, 0.9) !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--gea-primary) !important;
+            border-color: var(--gea-primary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(3, 3, 184, 0.9) !important;
+            border-color: rgba(3, 3, 184, 0.9) !important;
+        }
+
+        /* Cards */
+        .card {
+            box-shadow: 0 0 10px rgba(0, 15, 65, 0.08);
+            border: none;
+            border-radius: 8px;
+            background-color: var(--gea-white);
+        }
+
+        .card-header {
+            background-color: var(--gea-secondary);
+            color: var(--gea-white);
+            border-radius: 8px 8px 0 0 !important;
+            font-weight: 600;
+        }
+
+        .card-title {
+            color: var(--gea-white);
+            font-weight: 600;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .status-badge.connected {
+            background-color: rgba(var(--gea-active-green-rgb), 0.1);
+            color: var(--gea-active-green);
+        }
+
+        .status-badge.disconnected {
+            background-color: rgba(214, 57, 57, 0.1);
+            color: #d63939;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background-color: var(--gea-active-green);
+        }
+
+        .status-dot.disconnected {
+            background-color: #d63939;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Forms */
+        .form-control:focus {
+            border-color: var(--gea-primary);
+            box-shadow: 0 0 0 0.25rem rgba(var(--gea-primary-rgb), 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--gea-primary);
+            border-color: var(--gea-primary);
+        }
+
+        .form-select:focus {
+            border-color: var(--gea-primary);
+            box-shadow: 0 0 0 0.25rem rgba(var(--gea-primary-rgb), 0.25);
+        }
+
+        /* Ajuste para selects dentro de input-icon */
+        .input-icon .form-select {
+            padding-left: 2.5rem;
+        }
+
+        /* File Cards */
+        .file-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--gea-border);
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(var(--gea-primary-rgb), 0.15);
+            border-color: var(--gea-active-blue);
+        }
+
+        .file-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Config Table */
+        .config-table {
+            font-size: 0.9rem;
+        }
+
+        .config-table th {
+            background-color: rgba(var(--gea-secondary-rgb), 0.05);
+            color: var(--gea-secondary);
+            font-weight: 600;
+        }
+
+        .config-table td {
+            padding: 0.75rem;
+        }
+
+        .badge-type {
+            background-color: var(--gea-active-blue);
+            color: white;
+            padding: 0.35em 0.65em;
+            font-weight: 500;
+        }
+
+        /* Badges */
+        .badge.bg-primary {
+            background-color: var(--gea-secondary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        .badge.bg-secondary {
+            background-color: var(--gea-secondary) !important;
+            color: var(--gea-white) !important;
+        }
+
+        /* Alerts */
+        .alert {
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        .alert-info {
+            background-color: rgba(var(--gea-active-blue-rgb), 0.1);
+            border-color: var(--gea-active-blue);
+            color: var(--gea-text-primary);
+        }
+
+        .alert-success {
+            background-color: rgba(var(--gea-active-green-rgb), 0.1);
+            border-color: var(--gea-active-green);
+            color: var(--gea-text-primary);
+        }
+
+        .alert-danger {
+            background-color: rgba(214, 57, 57, 0.1);
+            border-color: #d63939;
+            color: var(--gea-text-primary);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal */
+        .modal-header {
+            background-color: var(--gea-secondary);
+            color: var(--gea-white);
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+
+        /* Page Wrapper */
+        .page-wrapper {
+            background-color: var(--gea-surface);
+        }
+
+        .container-xl {
+            max-width: 1320px;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        /* Navbar Nav Links */
+        .navbar-nav .nav-link {
+            color: var(--gea-text-secondary-darkbg) !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+        }
+
+        /* Loading Spinner */
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+            border-width: 0.15em;
+        }
+
+        /* Config Modal Tables */
+        #configModal .table td {
+            vertical-align: middle;
+        }
+
+        #configModal .table input.form-control {
+            font-size: 0.875rem;
+        }
+
+        #configModal .btn-icon {
+            width: 2rem;
+            height: 2rem;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #configModal .nav-tabs .nav-link {
+            font-weight: 500;
+        }
+
+        #configModal .nav-tabs .nav-link.active {
+            background-color: var(--gea-primary);
+            color: var(--gea-white);
+            border-color: var(--gea-primary);
+        }
+
+        #configModal .alert {
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Navbar -->
+        <header class="navbar navbar-expand-md navbar-dark d-print-none">
+            <div class="container-xl">
+                <h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3">
+                    <img src="/static/image/GEA_Logo_w_Claim_sRGB_Solid_neg.svg" alt="GEA Logo" class="gea-logo">
+                    <span>Gerador de Código PLC</span>
+                </h1>
+                <div class="navbar-nav flex-row order-md-last">
+                    <div class="d-flex align-items-center">
+                        <span class="navbar-text me-3">
+                            <i class="ti ti-brand-rockwell"></i> Rockwell Studio 5000 |
+                            <i class="ti ti-building-factory"></i> Siemens TIA Portal
+                        </span>
+
+                        <!-- Theme Toggle -->
+                        <div class="theme-toggle ms-3">
+                            <button class="theme-btn" id="lightModeBtn" onclick="setTheme('light')" title="Modo Claro" style="display: none;">
+                                <i class="ti ti-sun"></i>
+                            </button>
+                            <button class="theme-btn" id="darkModeBtn" onclick="setTheme('dark')" title="Modo Escuro">
+                                <i class="ti ti-moon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="container-xl">
+                    <!-- Status Bar -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="status-badge" id="statusBadge">
+                                                <span class="status-dot disconnected" id="statusDot"></span>
+                                                <span id="statusText">Desconectado</span>
+                                            </span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="text-muted" id="dbInfo">
+                                                <i class="ti ti-database"></i>
+                                                Nenhum banco conectado
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alertas -->
+                    <div id="alertContainer" class="mb-3"></div>
+
+                    <!-- Main Content -->
+                    <div class="row row-deck row-cards">
+                        <!-- Conexão com Banco de Dados -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="ti ti-plug-connected me-2"></i>
+                                        Conexão com Banco de Dados
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Etapa 1: Conectar ao Servidor -->
+                                    <div id="step1Container">
+                                        <div class="mb-2">
+                                            <span class="badge bg-primary">Etapa 1 de 2</span>
+                                        </div>
+                                        <form id="serverForm">
+                                            <div class="mb-3">
+                                                <label class="form-label required">Servidor</label>
+                                                <div class="input-icon">
+                                                    <span class="input-icon-addon">
+                                                        <i class="ti ti-server"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control" id="server"
+                                                           placeholder="localhost ou IP" required>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="useSqlAuth">
+                                                    <span class="form-check-label">Usar autenticação SQL</span>
+                                                </label>
+                                            </div>
+                                            <div id="sqlAuthFields" style="display: none;">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Usuário</label>
+                                                    <div class="input-icon">
+                                                        <span class="input-icon-addon">
+                                                            <i class="ti ti-user"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control" id="username"
+                                                               placeholder="Usuário SQL">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Senha</label>
+                                                    <div class="input-icon">
+                                                        <span class="input-icon-addon">
+                                                            <i class="ti ti-key"></i>
+                                                        </span>
+                                                        <input type="password" class="form-control" id="password"
+                                                               placeholder="Senha">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary w-100" id="listDatabasesBtn">
+                                                <i class="ti ti-list me-2"></i>
+                                                Listar Bancos de Dados
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Etapa 2: Selecionar Banco de Dados -->
+                                    <div id="step2Container" style="display: none;">
+                                        <div class="mb-2">
+                                            <span class="badge bg-secondary">Etapa 2 de 2</span>
+                                        </div>
+                                        <div class="alert alert-info mb-3">
+                                            <i class="ti ti-info-circle me-2"></i>
+                                            Servidor: <strong id="connectedServer"></strong>
+                                        </div>
+                                        <form id="databaseForm">
+                                            <div class="mb-3">
+                                                <label class="form-label required">Selecione o Banco de Dados</label>
+                                                <div class="input-icon">
+                                                    <span class="input-icon-addon">
+                                                        <i class="ti ti-database"></i>
+                                                    </span>
+                                                    <select class="form-select" id="databaseSelect" required>
+                                                        <option value="">Selecione um banco...</option>
+                                                    </select>
+                                                </div>
+                                                <small class="form-hint">
+                                                    <span id="databaseCount"></span>
+                                                </small>
+                                            </div>
+                                            <div class="btn-list w-100">
+                                                <button type="button" class="btn btn-secondary" id="backToStep1Btn">
+                                                    <i class="ti ti-arrow-left me-2"></i>
+                                                    Voltar
+                                                </button>
+                                                <button type="submit" class="btn btn-primary flex-fill" id="connectBtn">
+                                                    <i class="ti ti-plug-connected me-2"></i>
+                                                    Conectar
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gerar Códigos -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="ti ti-code me-2"></i>
+                                        Gerar Códigos
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Filtro Phase Instance -->
+                                    <div class="mb-3">
+                                        <label class="form-label required">
+                                            <i class="ti ti-filter me-2"></i>
+                                            Phase Instance
+                                        </label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+                                                <i class="ti ti-list"></i>
+                                            </span>
+                                            <select class="form-select" id="phaseInstanceFilter" disabled required>
+                                                <option value="">Selecione uma Phase Instance...</option>
+                                            </select>
+                                        </div>
+                                        <small class="form-hint">
+                                            Selecionar uma Phase Instance é obrigatório para gerar códigos
+                                        </small>
+                                    </div>
+
+                                    <!-- Tipo de Controlador -->
+                                    <div class="mb-3">
+                                        <label class="form-label required">
+                                            <i class="ti ti-cpu me-2"></i>
+                                            Tipo de Controlador
+                                        </label>
+                                        <select class="form-select" id="controllerType">
+                                            <option value="">Selecione o tipo de controlador...</option>
+                                            <option value="rockwell">Rockwell Studio 5000</option>
+                                            <option value="siemens">Siemens TIA Portal</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Diretório de Saída -->
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <i class="ti ti-folder me-2"></i>
+                                            Diretório de Saída
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="outputDir"
+                                                   value="output" placeholder="output" readonly>
+                                            <button class="btn btn-primary" type="button" id="selectDirBtn">
+                                                <i class="ti ti-folder-open me-2"></i>
+                                                Selecionar Pasta
+                                            </button>
+                                        </div>
+                                        <input type="file" id="folderInput" webkitdirectory directory multiple style="display: none;">
+                                        <small class="form-hint">
+                                            Clique em "Selecionar Pasta" para escolher o diretório de saída
+                                        </small>
+                                    </div>
+
+                                    <button class="btn btn-secondary w-100" id="generateBtn" disabled>
+                                        <i class="ti ti-file-code me-2"></i>
+                                        Gerar Códigos PLC
+                                    </button>
+                                    <div id="generationInfo" class="mt-3">
+                                        <!-- Info será inserida aqui -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão de Configurações -->
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary" id="openConfigBtn">
+                                <i class="ti ti-settings me-2"></i>
+                                Configurações de Mapeamento
+                            </button>
+                        </div>
+
+                        <!-- Arquivos Gerados -->
+                        <div class="col-12" id="filesSection" style="display: none;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="ti ti-files me-2"></i>
+                                        Arquivos Gerados
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row row-cards" id="filesGrid">
+                                        <!-- Arquivos serão inseridos aqui -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer footer-transparent d-print-none mt-4">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center">
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    <span style="color: var(--gea-text-muted);">
+                                        Engineering for a better world - GEA Group
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal para Preview -->
+    <div class="modal modal-blur fade" id="previewModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewTitle">Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre id="previewContent" class="m-0"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="ti ti-x me-2"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configurações -->
+    <div class="modal modal-blur fade" id="configModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="ti ti-settings me-2"></i>
+                        Configurações de Mapeamento
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tabs de Configuração -->
+                    <ul class="nav nav-tabs mb-3" id="configTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="type-tab" data-bs-toggle="tab"
+                                    data-bs-target="#type-mapping-tab" type="button" role="tab">
+                                <i class="ti ti-list-numbers me-2"></i>
+                                Mapeamento de Tipos (iType)
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="suffix-tab" data-bs-toggle="tab"
+                                    data-bs-target="#suffix-mapping-tab" type="button" role="tab">
+                                <i class="ti ti-tag me-2"></i>
+                                Mapeamento de Sufixos
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Conteúdo das Tabs -->
+                    <div class="tab-content" id="configTabContent">
+                        <!-- Tab: Mapeamento de Tipos -->
+                        <div class="tab-pane fade show active" id="type-mapping-tab" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="ti ti-info-circle me-2"></i>
+                                Configure o mapeamento entre valores de <strong>iType</strong> do banco de dados e os tipos de componentes PLC.
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30%;">iType (ID)</th>
+                                            <th style="width: 60%;">Nome do Tipo</th>
+                                            <th style="width: 10%;" class="text-end">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="typeMappingTableBody">
+                                        <!-- Será preenchido via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="addTypeRow()">
+                                <i class="ti ti-plus me-2"></i>
+                                Adicionar Tipo
+                            </button>
+                        </div>
+
+                        <!-- Tab: Mapeamento de Sufixos -->
+                        <div class="tab-pane fade" id="suffix-mapping-tab" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="ti ti-info-circle me-2"></i>
+                                Configure os sufixos que serão adicionados aos nomes das tags para cada tipo de componente.
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%;">iType (ID)</th>
+                                            <th style="width: 30%;">Sufixo</th>
+                                            <th style="width: 45%;">Regras de Filtragem (iPIDType)</th>
+                                            <th style="width: 10%;" class="text-end">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="suffixMappingTableBody">
+                                        <!-- Será preenchido via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="addSuffixRow()">
+                                <i class="ti ti-plus me-2"></i>
+                                Adicionar Sufixo
+                            </button>
+
+                            <!-- Legenda de iPIDType -->
+                            <div class="mt-4">
+                                <h3 class="card-title mb-3">
+                                    <i class="ti ti-info-circle me-2"></i>
+                                    Legenda de iPIDType e Regras de Filtragem
+                                </h3>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card bg-light">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Legenda de iPIDType</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Descrição</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="pidTypeLegendTableBody">
+                                                        <!-- Será preenchido via JS -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card bg-light">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Regras de Filtragem</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-2">
+                                                        <span class="badge bg-danger">iPIDType = 3 (SP)</span>
+                                                        <span class="ms-2">Desconsiderar <strong>sempre</strong></span>
+                                                    </li>
+                                                    <li class="mb-2">
+                                                        <span class="badge bg-warning">iPIDType = 4 (FO)</span>
+                                                        <span class="ms-2">Desconsiderar se iType for <strong>(0, 1, 2, 7, 10, 14)</strong></span>
+                                                    </li>
+                                                    <li class="mb-2">
+                                                        <span class="badge bg-info">iPIDType = 2 (R)</span>
+                                                        <span class="ms-2">Desconsiderar, <strong>exceto</strong> se iType = <strong>14</strong></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="ti ti-x me-2"></i>
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="saveConfiguration()">
+                        <i class="ti ti-device-floppy me-2"></i>
+                        Salvar Configurações
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Preview e Editor de Condicionais -->
+    <div class="modal modal-blur fade" id="previewConditionalsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="ti ti-eye me-2"></i>
+                        Preview e Edição de Condicionais
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Editor de Condicionais -->
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="ti ti-circuit-switch-closed me-2"></i>
+                                        Editor de Condicionais Lógicas
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="alert alert-info">
+                                        <i class="ti ti-info-circle me-2"></i>
+                                        Configure as condicionais para cada step. A primeira condicional (StepFlag) é obrigatória.
+                                    </div>
+
+                                    <!-- Seletor de Step -->
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <i class="ti ti-stairs me-2"></i>
+                                            1. Selecionar Step
+                                        </label>
+                                        <select class="form-select" id="stepSelector">
+                                            <option value="">Selecione um step...</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Seletor de Ativação -->
+                                    <div class="mb-3" id="activationSelectorContainer" style="display: none;">
+                                        <label class="form-label">
+                                            <i class="ti ti-tag me-2"></i>
+                                            2. Selecionar Ativação
+                                        </label>
+                                        <select class="form-select" id="activationSelector">
+                                            <option value="">Selecione uma ativação...</option>
+                                        </select>
+                                        <small class="form-hint">
+                                            Escolha qual ativação deseja editar as condicionais
+                                        </small>
+                                    </div>
+
+                                    <!-- Editor de Condicionais para a Ativação Selecionada -->
+                                    <div id="conditionalsEditor" style="display: none;">
+                                        <div class="alert alert-success">
+                                            <strong>Editando:</strong> Step <span id="selectedStepNumber"></span> - <span id="selectedActivation"></span>
+                                        </div>
+
+                                        <!-- Expressão Lógica -->
+                                        <div class="mb-3">
+                                            <label class="form-label">
+                                                <i class="ti ti-math-function me-2"></i>
+                                                Expressão Lógica
+                                            </label>
+                                            <input type="text" class="form-control font-monospace" id="logicExpression"
+                                                   placeholder="Ex: X1 AND (X2 OR X3)">
+                                            <small class="form-hint">
+                                                Use operadores: AND, OR, XOR, NOT, parênteses ( ).
+                                                Variáveis: X1, X2, X3...
+                                            </small>
+                                        </div>
+
+                                        <!-- Lista de Condicionais (Variáveis) -->
+                                        <div class="mb-3">
+                                            <label class="form-label">
+                                                <i class="ti ti-list me-2"></i>
+                                                Variáveis (máximo 6)
+                                            </label>
+                                        </div>
+                                        <div id="conditionalsList">
+                                            <!-- Será preenchido dinamicamente -->
+                                        </div>
+
+                                        <button type="button" class="btn btn-primary" onclick="addConditional()" id="addConditionalBtn">
+                                            <i class="ti ti-plus me-2"></i>
+                                            Adicionar Variável
+                                        </button>
+
+                                        <div class="mt-3">
+                                            <button type="button" class="btn btn-success" onclick="applyConditionalsToStep()">
+                                                <i class="ti ti-check me-2"></i>
+                                                Aplicar à Ativação
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview do Código -->
+                        <div class="col-md-7">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="ti ti-code me-2"></i>
+                                        Preview do Código
+                                    </h3>
+                                    <div class="card-actions" style="display: none;">
+                                        <div class="btn-group" role="group">
+                                            <input type="radio" class="btn-check" name="preview-type" id="preview-rockwell" value="rockwell" checked>
+                                            <label class="btn btn-sm" for="preview-rockwell">Rockwell</label>
+
+                                            <input type="radio" class="btn-check" name="preview-type" id="preview-siemens" value="siemens">
+                                            <label class="btn btn-sm" for="preview-siemens">Siemens</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <pre id="codePreview" class="m-0" style="max-height: 70vh; overflow-y: auto; background-color: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 6px;"></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-xl">
+                        <div class="row text-center align-items-center w-100">
+                            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                                <span class="text-white">Engineering for a better world - GEA Group</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-auto">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="ti ti-x me-2"></i>
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="generateFinalCode()">
+                            <i class="ti ti-device-floppy me-2"></i>
+                            Gerar e Salvar Arquivos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabler JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta19/dist/js/tabler.min.js"></script>
+
+    <script>
+        // ========== THEME MANAGEMENT ==========
+
+        // Função para definir o tema
+        function setTheme(theme) {
+            // Aplica o tema no documento
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // Salva no localStorage
+            localStorage.setItem('theme', theme);
+
+            // Atualiza botões
+            updateThemeButtons(theme);
+        }
+
+        // Atualiza estado visual dos botões (mostra apenas o modo contrário)
+        function updateThemeButtons(theme) {
+            const lightBtn = document.getElementById('lightModeBtn');
+            const darkBtn = document.getElementById('darkModeBtn');
+
+            if (theme === 'dark') {
+                // Em dark mode, mostra apenas o botão de light mode
+                lightBtn.style.display = 'block';
+                darkBtn.style.display = 'none';
+            } else {
+                // Em light mode, mostra apenas o botão de dark mode
+                lightBtn.style.display = 'none';
+                darkBtn.style.display = 'block';
+            }
+        }
+
+        // Carrega o tema salvo ou usa o padrão
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        // Carrega tema imediatamente (antes do DOM carregar) para evitar flash
+        loadSavedTheme();
+
+        // ========== APPLICATION STATE ==========
+
+        // Estado da aplicação
+        let isConnected = false;
+        let generatedFiles = [];
+        let serverConnectionData = {}; // Armazena dados do servidor para usar na etapa 2
+        let activationConditions = {}; // Armazena condicionais por step e ativação: {step_no: {activation_tag: {operator, conditions}}}
+        let previewData = null; // Dados do preview
+        let currentSelectedStep = null;
+        let currentSelectedActivation = null;
+        let selectedControllerType = null; // Tipo de controlador selecionado (rockwell ou siemens)
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            checkDatabaseStatus();
+            loadAbsoluteOutputPath();
+
+            // Event Listeners
+            document.getElementById('useSqlAuth').addEventListener('change', function(e) {
+                document.getElementById('sqlAuthFields').style.display = e.target.checked ? 'block' : 'none';
+            });
+
+            document.getElementById('serverForm').addEventListener('submit', listDatabases);
+            document.getElementById('databaseForm').addEventListener('submit', connectDatabase);
+            document.getElementById('backToStep1Btn').addEventListener('click', backToStep1);
+            document.getElementById('generateBtn').addEventListener('click', generateCode);
+            document.getElementById('openConfigBtn').addEventListener('click', openConfigModal);
+            document.getElementById('selectDirBtn').addEventListener('click', selectDirectory);
+            document.getElementById('folderInput').addEventListener('change', handleFolderSelection);
+
+            // Listeners para mudança de preview type
+            document.querySelectorAll('input[name="preview-type"]').forEach(radio => {
+                radio.addEventListener('change', updatePreview);
+            });
+
+            // Listener para mudança de step no editor
+            document.getElementById('stepSelector').addEventListener('change', onStepSelected);
+
+            // Listener para mudança de ativação no editor
+            document.getElementById('activationSelector').addEventListener('change', onActivationSelected);
+
+            // Listener para reset dos dropdowns ao fechar modal de condicionais
+            document.getElementById('previewConditionalsModal').addEventListener('hidden.bs.modal', function() {
+                // Reset dos selects
+                document.getElementById('stepSelector').selectedIndex = 0;
+                document.getElementById('activationSelector').selectedIndex = 0;
+
+                // Esconde o editor até nova seleção
+                document.getElementById('conditionalsEditor').style.display = 'none';
+            });
+        });
+
+        // Funções de Alerta
+        function showAlert(message, type = 'info') {
+            const container = document.getElementById('alertContainer');
+            const alertId = 'alert-' + Date.now();
+
+            const typeClasses = {
+                'success': 'alert-success',
+                'error': 'alert-danger',
+                'info': 'alert-info',
+                'warning': 'alert-warning'
+            };
+
+            const icons = {
+                'success': 'ti-check',
+                'error': 'ti-alert-circle',
+                'info': 'ti-info-circle',
+                'warning': 'ti-alert-triangle'
+            };
+
+            const alert = document.createElement('div');
+            alert.id = alertId;
+            alert.className = `alert ${typeClasses[type] || 'alert-info'} alert-dismissible`;
+            alert.innerHTML = `
+                <div class="d-flex">
+                    <div>
+                        <i class="ti ${icons[type] || 'ti-info-circle'} icon alert-icon"></i>
+                    </div>
+                    <div>
+                        ${message}
+                    </div>
+                </div>
+                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            `;
+
+            container.appendChild(alert);
+
+            setTimeout(() => {
+                const alertElement = document.getElementById(alertId);
+                if (alertElement) {
+                    alertElement.remove();
+                }
+            }, 5000);
+        }
+
+        // Etapa 1: Listar Bancos de Dados
+        async function listDatabases(e) {
+            e.preventDefault();
+            const btn = document.getElementById('listDatabasesBtn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Carregando...';
+            btn.disabled = true;
+
+            const data = {
+                server: document.getElementById('server').value,
+            };
+
+            if (document.getElementById('useSqlAuth').checked) {
+                data.username = document.getElementById('username').value;
+                data.password = document.getElementById('password').value;
+            }
+
+            // Armazena dados do servidor para usar na etapa 2
+            serverConnectionData = data;
+
+            try {
+                const response = await fetch('/api/database/list-databases', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    if (result.databases.length === 0) {
+                        showAlert('Nenhum banco de dados encontrado no servidor', 'warning');
+                        return;
+                    }
+
+                    // Preenche dropdown com bancos
+                    const select = document.getElementById('databaseSelect');
+                    select.innerHTML = '<option value="">Selecione um banco...</option>';
+                    result.databases.forEach(db => {
+                        const option = document.createElement('option');
+                        option.value = db;
+                        option.textContent = db;
+                        select.appendChild(option);
+                    });
+
+                    // Atualiza informações
+                    document.getElementById('connectedServer').textContent = result.server;
+                    document.getElementById('databaseCount').textContent = `${result.databases.length} banco(s) de dados disponível(is)`;
+
+                    // Vai para etapa 2
+                    document.getElementById('step1Container').style.display = 'none';
+                    document.getElementById('step2Container').style.display = 'block';
+
+                    showAlert('Bancos de dados carregados com sucesso!', 'success');
+                } else {
+                    showAlert('Erro: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro ao listar bancos: ' + error.message, 'error');
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        // Etapa 2: Conectar ao Banco de Dados
+        async function connectDatabase(e) {
+            e.preventDefault();
+            const btn = document.getElementById('connectBtn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Conectando...';
+            btn.disabled = true;
+
+            const data = {
+                server: serverConnectionData.server,
+                database: document.getElementById('databaseSelect').value,
+            };
+
+            if (serverConnectionData.username) {
+                data.username = serverConnectionData.username;
+                data.password = serverConnectionData.password;
+            }
+
+            try {
+                const response = await fetch('/api/database/connect', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    isConnected = true;
+                    updateConnectionStatus(true, data.database);
+                    showAlert(result.message, 'success');
+                    document.getElementById('generateBtn').disabled = false;
+
+                    // Carregar Phase Instances após conexão bem-sucedida
+                    loadPhaseInstances();
+                } else {
+                    showAlert('Erro: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro de conexão: ' + error.message, 'error');
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        // Voltar para Etapa 1
+        function backToStep1() {
+            document.getElementById('step2Container').style.display = 'none';
+            document.getElementById('step1Container').style.display = 'block';
+        }
+
+        // Atualizar Status de Conexão
+        function updateConnectionStatus(connected, dbName = '') {
+            const badge = document.getElementById('statusBadge');
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            const info = document.getElementById('dbInfo');
+
+            if (connected) {
+                badge.classList.remove('disconnected');
+                badge.classList.add('connected');
+                dot.classList.remove('disconnected');
+                dot.classList.add('connected');
+                text.textContent = 'Conectado';
+                info.innerHTML = `<i class="ti ti-database me-2"></i><strong>Banco:</strong> ${dbName}`;
+            } else {
+                badge.classList.remove('connected');
+                badge.classList.add('disconnected');
+                dot.classList.remove('connected');
+                dot.classList.add('disconnected');
+                text.textContent = 'Desconectado';
+                info.innerHTML = '<i class="ti ti-database me-2"></i>Nenhum banco conectado';
+            }
+        }
+
+        // Verificar Status do Banco
+        async function checkDatabaseStatus() {
+            try {
+                const response = await fetch('/api/database/status');
+                const result = await response.json();
+                if (result.success && result.connected) {
+                    isConnected = true;
+                    updateConnectionStatus(true);
+                    document.getElementById('generateBtn').disabled = false;
+                    // Carregar Phase Instances se já estiver conectado
+                    loadPhaseInstances();
+                }
+            } catch (error) {
+                console.error('Erro ao verificar status:', error);
+            }
+        }
+
+        // Carregar Caminho Absoluto do Diretório de Saída
+        async function loadAbsoluteOutputPath() {
+            try {
+                const currentPath = document.getElementById('outputDir').value || 'output';
+                const response = await fetch('/api/get-absolute-path', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: currentPath })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    document.getElementById('outputDir').value = result.absolute_path;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar caminho absoluto:', error);
+            }
+        }
+
+        // Carregar Phase Instances
+        async function loadPhaseInstances() {
+            try {
+                const response = await fetch('/api/database/phase-instances');
+                const result = await response.json();
+
+                if (result.success) {
+                    const select = document.getElementById('phaseInstanceFilter');
+                    select.innerHTML = '<option value="">Selecione uma Phase Instance...</option>';
+
+                    result.phase_instances.forEach(pi => {
+                        const option = document.createElement('option');
+                        option.value = pi.id;
+                        option.textContent = pi.name;
+                        select.appendChild(option);
+                    });
+
+                    // Habilita o filtro
+                    select.disabled = false;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar Phase Instances:', error);
+            }
+        }
+
+        // Seletor de Diretório
+        function selectDirectory() {
+            document.getElementById('folderInput').click();
+        }
+
+        // Manipular Seleção de Pasta
+        function handleFolderSelection(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                // Extrai o caminho da pasta do primeiro arquivo
+                const filePath = files[0].webkitRelativePath || files[0].name;
+                const folderPath = filePath.split('/')[0];
+
+                // Atualiza o campo com o nome da pasta
+                document.getElementById('outputDir').value = folderPath;
+
+                showAlert(`Pasta selecionada: ${folderPath}`, 'info');
+            }
+        }
+
+        // Gerar Códigos - Abre modal de preview
+        async function generateCode() {
+            const phaseInstanceId = document.getElementById('phaseInstanceFilter').value;
+            const controllerType = document.getElementById('controllerType').value;
+
+            // Valida se Phase Instance foi selecionada
+            if (!phaseInstanceId) {
+                showAlert('Por favor, selecione uma Phase Instance antes de gerar os códigos.', 'warning');
+                return;
+            }
+
+            // Valida se tipo de controlador foi selecionado
+            if (!controllerType) {
+                showAlert('Por favor, selecione o tipo de controlador (Rockwell ou Siemens) antes de gerar os códigos.', 'warning');
+                return;
+            }
+
+            // Armazena tipo de controlador selecionado
+            selectedControllerType = controllerType;
+
+            const btn = document.getElementById('generateBtn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Carregando Preview...';
+            btn.disabled = true;
+
+            try {
+                const requestBody = {
+                    phase_instance_id: parseInt(phaseInstanceId),
+                    controller_type: controllerType,
+                    preview_only: true  // Modo preview
+                };
+
+                const response = await fetch('/api/generate/preview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Armazena dados do preview
+                    previewData = result;
+
+                    // Inicializa condicionais para cada ativação (StepFlag como padrão)
+                    activationConditions = {};
+                    result.steps.forEach(step => {
+                        activationConditions[step.step_no] = {};
+
+                        step.activations.forEach(act => {
+                            // Para Siemens, X1 é editável livremente; para Rockwell, é readonly com StepFlag
+                            const isRockwell = selectedControllerType === 'rockwell';
+                            const defaultTag = isRockwell ? `StepFlag[${step.step_no}].Flag` : '';
+
+                            activationConditions[step.step_no][act.tag_with_suffix] = {
+                                expression: 'X1',  // Expressão lógica padrão
+                                conditions: [
+                                    { label: 'X1', tag: defaultTag, negated: false, readonly: isRockwell }
+                                ]
+                            };
+                        });
+                    });
+
+                    // Popula seletor de steps
+                    const stepSelector = document.getElementById('stepSelector');
+                    stepSelector.innerHTML = '<option value="">Selecione um step...</option>';
+                    result.steps.forEach(step => {
+                        const option = document.createElement('option');
+                        option.value = step.step_no;
+                        option.textContent = `Step ${step.step_no} - ${step.step_name} (${step.activations.length} ativações)`;
+                        stepSelector.appendChild(option);
+                    });
+
+                    // Atualiza preview
+                    updatePreview();
+
+                    // Abre modal
+                    const modal = new bootstrap.Modal(document.getElementById('previewConditionalsModal'));
+                    modal.show();
+
+                    showAlert(`Preview carregado para ${selectedControllerType === 'siemens' ? 'Siemens' : 'Rockwell'}! Configure as condicionais lógicas.`, 'success');
+                } else {
+                    showAlert('Erro: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro ao gerar preview: ' + error.message, 'error');
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        // Exibir Arquivos Gerados
+        function displayGeneratedFiles(files, controllerType = 'all') {
+            const section = document.getElementById('filesSection');
+            const grid = document.getElementById('filesGrid');
+            section.style.display = 'block';
+            grid.innerHTML = '';
+
+            const fileIcons = {
+                'txt': { icon: 'ti-file-text', color: 'primary' },
+                'L5X': { icon: 'ti-file-code', color: 'success' }
+            };
+
+            // Determina descrição baseada no nome do arquivo e tipo
+            const getFileDescription = (filename) => {
+                if (filename.includes('rockwell_ladder.txt')) {
+                    return 'Rockwell Ladder (Texto)';
+                } else if (filename.includes('rockwell_ladder.L5X')) {
+                    return 'Rockwell Ladder (L5X)';
+                } else if (filename.includes('siemens_scl')) {
+                    return 'Siemens SCL (Texto)';
+                }
+                return filename;
+            };
+
+            files.forEach(filepath => {
+                const filename = filepath.split('\\').pop().split('/').pop();
+                const ext = filename.split('.').pop();
+                const fileInfo = fileIcons[ext] || { icon: 'ti-file', color: 'secondary' };
+                const description = getFileDescription(filename);
+
+                const col = document.createElement('div');
+                col.className = 'col-md-4';
+                col.innerHTML = `
+                    <div class="card file-card">
+                        <div class="card-body text-center">
+                            <div class="file-icon">
+                                <i class="ti ${fileInfo.icon} text-${fileInfo.color}" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3 class="card-title mb-1">${filename}</h3>
+                            <p class="text-muted small mb-3">${description}</p>
+                            <div class="btn-list">
+                                <button class="btn btn-primary btn-sm" onclick="previewFile('${filename}')">
+                                    <i class="ti ti-eye me-1"></i>
+                                    Visualizar
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="downloadFile('${filename}')">
+                                    <i class="ti ti-download me-1"></i>
+                                    Baixar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+
+        // Preview de Arquivo
+        async function previewFile(filename) {
+            const outputDir = document.getElementById('outputDir').value || 'output';
+            try {
+                const response = await fetch(`/api/preview/${filename}?output_dir=${outputDir}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('previewTitle').textContent = filename;
+                    document.getElementById('previewContent').textContent = result.content;
+                    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
+                    modal.show();
+                } else {
+                    showAlert('Erro ao carregar preview: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro ao carregar preview: ' + error.message, 'error');
+            }
+        }
+
+        // Download de Arquivo
+        function downloadFile(filename) {
+            const outputDir = document.getElementById('outputDir').value || 'output';
+            window.location.href = `/api/download/${filename}?output_dir=${outputDir}`;
+        }
+
+        // ========== CONFIGURAÇÕES - MODAL EDITÁVEL ==========
+
+        let currentConfig = {
+            type_mapping: {},
+            suffix_mapping: {},
+            pid_type_mapping: {}
+        };
+
+        // Abrir Modal de Configurações
+        async function openConfigModal() {
+            await loadConfig();
+            const modal = new bootstrap.Modal(document.getElementById('configModal'));
+            modal.show();
+        }
+
+        // Carregar Configurações
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                const result = await response.json();
+
+                if (result.success) {
+                    currentConfig.type_mapping = result.type_mapping;
+                    currentConfig.suffix_mapping = result.suffix_mapping;
+                    currentConfig.pid_type_mapping = result.pid_type_mapping || {};
+
+                    renderTypeMappingTable();
+                    renderSuffixMappingTable();
+                    renderPidTypeLegend();
+                }
+            } catch (error) {
+                showAlert('Erro ao carregar configurações: ' + error.message, 'error');
+            }
+        }
+
+        // Renderizar Legenda de iPIDType
+        function renderPidTypeLegend() {
+            const tbody = document.getElementById('pidTypeLegendTableBody');
+            tbody.innerHTML = '';
+
+            for (const [code, description] of Object.entries(currentConfig.pid_type_mapping)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${code}</strong></td>
+                    <td>${description}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        // Renderizar Tabela de Mapeamento de Tipos
+        function renderTypeMappingTable() {
+            const tbody = document.getElementById('typeMappingTableBody');
+            tbody.innerHTML = '';
+
+            for (const [key, value] of Object.entries(currentConfig.type_mapping)) {
+                const row = createTypeMappingRow(key, value);
+                tbody.appendChild(row);
+            }
+        }
+
+        // Criar Linha de Mapeamento de Tipo
+        function createTypeMappingRow(iType = '', typeName = '') {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <input type="text" class="form-control" value="${iType}"
+                           placeholder="Ex: 0, 6, 8..." data-field="itype">
+                </td>
+                <td>
+                    <input type="text" class="form-control" value="${typeName}"
+                           placeholder="Ex: Valve, PID, VSD..." data-field="typename">
+                </td>
+                <td class="text-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-danger"
+                            onclick="removeRow(this)" title="Remover">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </td>
+            `;
+            return tr;
+        }
+
+        // Adicionar Nova Linha de Tipo
+        function addTypeRow() {
+            const tbody = document.getElementById('typeMappingTableBody');
+            const row = createTypeMappingRow('', '');
+            tbody.appendChild(row);
+        }
+
+        // Renderizar Tabela de Mapeamento de Sufixos
+        function renderSuffixMappingTable() {
+            const tbody = document.getElementById('suffixMappingTableBody');
+            tbody.innerHTML = '';
+
+            for (const [key, value] of Object.entries(currentConfig.suffix_mapping)) {
+                // Tratamento especial para sufixos com subcategorias (como PID)
+                if (typeof value === 'object' && !Array.isArray(value)) {
+                    for (const [subKey, subValue] of Object.entries(value)) {
+                        const row = createSuffixMappingRow(key, subValue, subKey);
+                        tbody.appendChild(row);
+                    }
+                } else {
+                    const row = createSuffixMappingRow(key, value || '');
+                    tbody.appendChild(row);
+                }
+            }
+        }
+
+        // Obter texto das regras de filtragem baseado no iType
+        function getFilteringRules(iType, subType = '') {
+            // Regras específicas para iType 8 (PID)
+            if (iType === '8') {
+                if (subType.includes('pid_type_4')) {
+                    return 'iPIDType = 4: Usa .fixedoutput';
+                } else if (subType.includes('pid_type_other')) {
+                    return 'iPIDType ≠ 4: Usa .closeloop';
+                }
+                return 'iPIDType = 4: .fixedoutput | iPIDType ≠ 4: .closeloop';
+            }
+
+            // Regras específicas para iType 14 (TOT)
+            if (iType === '14') {
+                if (subType.includes('pid_type_2')) {
+                    return 'iPIDType = 2: Usa .ResetTotalizer';
+                } else if (subType.includes('pid_type_other')) {
+                    return 'iPIDType ≠ 2: Usa .EnableTotalizer';
+                }
+                return 'iPIDType = 2: .ResetTotalizer | iPIDType ≠ 2: .EnableTotalizer';
+            }
+
+            return ''; // Sem regras específicas
+        }
+
+        // Criar Linha de Mapeamento de Sufixo
+        function createSuffixMappingRow(typeName = '', suffix = '', subType = '') {
+            const tr = document.createElement('tr');
+            const filteringRules = getFilteringRules(typeName, subType);
+
+            tr.innerHTML = `
+                <td>
+                    <input type="text" class="form-control" value="${typeName}"
+                           placeholder="Ex: 0, 1, 8, 14..." data-field="typename">
+                    ${subType ? `<input type="hidden" value="${subType}" data-field="subtype">` : ''}
+                </td>
+                <td>
+                    <input type="text" class="form-control" value="${suffix}"
+                           placeholder="Ex: .activate, .closeloop..." data-field="suffix">
+                </td>
+                <td>
+                    <span class="text-muted ${filteringRules ? '' : 'font-italic'}">${filteringRules || 'Nenhuma regra específica'}</span>
+                </td>
+                <td class="text-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-danger"
+                            onclick="removeRow(this)" title="Remover">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </td>
+            `;
+            return tr;
+        }
+
+        // Adicionar Nova Linha de Sufixo
+        function addSuffixRow() {
+            const tbody = document.getElementById('suffixMappingTableBody');
+            const row = createSuffixMappingRow('', '');
+            tbody.appendChild(row);
+        }
+
+        // Remover Linha
+        function removeRow(button) {
+            const row = button.closest('tr');
+            if (confirm('Deseja realmente remover esta linha?')) {
+                row.remove();
+            }
+        }
+
+        // Salvar Configurações
+        async function saveConfiguration() {
+            try {
+                // Coletar dados do mapeamento de tipos
+                const typeMappingRows = document.querySelectorAll('#typeMappingTableBody tr');
+                const newTypeMapping = {};
+
+                typeMappingRows.forEach(row => {
+                    const iType = row.querySelector('[data-field="itype"]').value.trim();
+                    const typeName = row.querySelector('[data-field="typename"]').value.trim();
+
+                    if (iType && typeName) {
+                        newTypeMapping[iType] = typeName;
+                    }
+                });
+
+                // Coletar dados do mapeamento de sufixos
+                const suffixMappingRows = document.querySelectorAll('#suffixMappingTableBody tr');
+                const newSuffixMapping = {};
+
+                suffixMappingRows.forEach(row => {
+                    const typeName = row.querySelector('[data-field="typename"]').value.trim();
+                    const suffix = row.querySelector('[data-field="suffix"]').value.trim();
+                    const subTypeInput = row.querySelector('[data-field="subtype"]');
+                    const subType = subTypeInput ? subTypeInput.value.trim() : '';
+
+                    if (typeName) {
+                        if (subType) {
+                            // Sufixo com subcategoria (ex: PID com pid_type_4)
+                            if (!newSuffixMapping[typeName]) {
+                                newSuffixMapping[typeName] = {};
+                            }
+                            newSuffixMapping[typeName][subType] = suffix;
+                        } else {
+                            // Sufixo simples
+                            newSuffixMapping[typeName] = suffix;
+                        }
+                    }
+                });
+
+                // Validar se há dados
+                if (Object.keys(newTypeMapping).length === 0) {
+                    showAlert('É necessário ter pelo menos um mapeamento de tipo!', 'warning');
+                    return;
+                }
+
+                if (Object.keys(newSuffixMapping).length === 0) {
+                    showAlert('É necessário ter pelo menos um mapeamento de sufixo!', 'warning');
+                    return;
+                }
+
+                // Enviar para API
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type_mapping: newTypeMapping,
+                        suffix_mapping: newSuffixMapping,
+                        pid_type_mapping: currentConfig.pid_type_mapping
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert('Configurações salvas com sucesso!', 'success');
+                    currentConfig.type_mapping = newTypeMapping;
+                    currentConfig.suffix_mapping = newSuffixMapping;
+
+                    // Fechar modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('configModal'));
+                    modal.hide();
+                } else {
+                    showAlert('Erro ao salvar configurações: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro ao salvar configurações: ' + error.message, 'error');
+            }
+        }
+
+        // ========== EDITOR DE CONDICIONAIS POR ATIVAÇÃO ==========
+
+        // Quando seleciona um Step
+        function onStepSelected() {
+            const stepNo = document.getElementById('stepSelector').value;
+            currentSelectedStep = stepNo;
+            currentSelectedActivation = null;
+
+            // Esconde editor e mostra/esconde seletor de ativação
+            document.getElementById('conditionalsEditor').style.display = 'none';
+
+            if (!stepNo) {
+                document.getElementById('activationSelectorContainer').style.display = 'none';
+                return;
+            }
+
+            // Popula seletor de ativações
+            const step = previewData.steps.find(s => s.step_no == stepNo);
+            const activationSelector = document.getElementById('activationSelector');
+            activationSelector.innerHTML = '<option value="">Selecione uma ativação...</option>';
+
+            step.activations.forEach(act => {
+                const option = document.createElement('option');
+                option.value = act.tag_with_suffix;
+                option.textContent = act.tag_with_suffix;
+                activationSelector.appendChild(option);
+            });
+
+            document.getElementById('activationSelectorContainer').style.display = 'block';
+        }
+
+        // Quando seleciona uma Ativação
+        function onActivationSelected() {
+            const activationTag = document.getElementById('activationSelector').value;
+            currentSelectedActivation = activationTag;
+
+            if (!activationTag || !currentSelectedStep) {
+                document.getElementById('conditionalsEditor').style.display = 'none';
+                return;
+            }
+
+            // Exibe editor
+            document.getElementById('selectedStepNumber').textContent = currentSelectedStep;
+            document.getElementById('selectedActivation').textContent = activationTag;
+
+            const condData = activationConditions[currentSelectedStep][activationTag];
+            document.getElementById('logicExpression').value = condData.expression;
+
+            renderConditionalsList();
+            updateAddButtonState();
+            document.getElementById('conditionalsEditor').style.display = 'block';
+        }
+
+        // Atualizar Preview do Código
+        function updatePreview() {
+            if (!previewData) return;
+
+            // Usa o tipo de controlador selecionado anteriormente
+            const previewType = selectedControllerType || 'rockwell';
+            const previewEl = document.getElementById('codePreview');
+
+            // Gera código com condicionais customizadas
+            let code = generateCodeWithConditions(previewType);
+            previewEl.textContent = code;
+        }
+
+        // Gerar Código com Condicionais Customizadas por Ativação
+        function generateCodeWithConditions(type) {
+            let code = [];
+
+            if (type === 'rockwell') {
+                code.push('='.repeat(80));
+                code.push('Código Ladder Rockwell com Condicionais');
+                code.push(`Data: ${new Date().toLocaleString('pt-BR')}`);
+                code.push('='.repeat(80));
+                code.push('');
+
+                previewData.steps.forEach(step => {
+                    code.push(`${'-'.repeat(80)}`);
+                    code.push(`Step ${step.step_no} -- ${step.step_name}`);
+                    code.push(`${'-'.repeat(80)}`);
+
+                    step.activations.forEach(act => {
+                        // Rockwell: usa condicionais customizadas ou padrão
+                        const conditions = activationConditions[step.step_no][act.tag_with_suffix];
+                        const condStr = buildConditionString(conditions, 'rockwell');
+                        code.push(`${condStr} OTL ${act.tag_with_suffix}`);
+                    });
+
+                    code.push('');
+                });
+            } else { // siemens
+                code.push('(*' + '='.repeat(80) + '*)');
+                code.push('(* Código SCL Siemens com Condicionais *)');
+                code.push(`(* Data: ${new Date().toLocaleString('pt-BR')} *)`);
+                code.push('(*' + '='.repeat(80) + '*)');
+                code.push('');
+
+                previewData.steps.forEach(step => {
+                    code.push(`REGION Step ${step.step_no} - ${step.step_name}`);
+
+                    // MyStepFlag no IF principal
+                    const stepFlag = `#MyStepFlag.Step${step.step_no.toString().padStart(3, '0')}`;
+                    code.push(`    IF ${stepFlag} THEN`);
+
+                    // Ativações dentro do IF, cada uma com sua condicional no :=
+                    step.activations.forEach(act => {
+                        const condData = activationConditions[step.step_no][act.tag_with_suffix];
+
+                        // Pega a expressão ou usa true como padrão
+                        let condExpr = 'TRUE';
+                        if (condData && condData.expression !== 'X1') {
+                            // Se tem expressão customizada diferente de X1, usa ela
+                            condExpr = buildConditionString(condData, 'siemens');
+                        }
+
+                        code.push(`        ${act.tag_with_suffix} := ${condExpr};`);
+                    });
+
+                    code.push('        RETURN;');
+                    code.push('    END_IF;');
+                    code.push('END_REGION ;');
+                    code.push('');
+                });
+            }
+
+            return code.join('\n');
+        }
+
+        // Converter StepFlag para formato Siemens
+        function convertStepFlagToSiemens(tag) {
+            // Converte StepFlag[N].Flag para #MyStepFlag.StepNNN
+            const match = tag.match(/StepFlag\[(\d+)\]\.Flag/i);
+            if (match) {
+                const stepNum = parseInt(match[1]);
+                return `#MyStepFlag.Step${stepNum.toString().padStart(3, '0')}`;
+            }
+            return tag;
+        }
+
+        // Converter expressão para Rockwell Ladder com BST/NXB/BND
+        function convertToRockwellLadder(condData) {
+            if (!condData || !condData.conditions || condData.conditions.length === 0) {
+                return 'XIC StepFlag[0].Flag';
+            }
+
+            const expression = condData.expression || 'X1';
+            const conditions = condData.conditions;
+
+            // Cria mapa de variáveis
+            const varMap = {};
+            conditions.forEach(cond => {
+                const instruction = cond.negated ? 'XIO' : 'XIC';
+                varMap[cond.label] = { instruction, tag: cond.tag };
+            });
+
+            // Se é só X1, retorna simples
+            const expr = expression.trim();
+            if (expr === 'X1' && conditions.length === 1) {
+                const v = varMap['X1'];
+                return `${v.instruction} ${v.tag}`;
+            }
+
+            // Parser recursivo de expressões
+            function parseExpression(exp) {
+                exp = exp.trim();
+
+                // Remove parênteses externos se existirem
+                while (exp.startsWith('(') && exp.endsWith(')')) {
+                    let count = 0;
+                    let valid = true;
+                    for (let i = 0; i < exp.length; i++) {
+                        if (exp[i] === '(') count++;
+                        if (exp[i] === ')') count--;
+                        if (count === 0 && i < exp.length - 1) {
+                            valid = false;
+                            break;
+                        }
+                    }
+                    if (valid) {
+                        exp = exp.substring(1, exp.length - 1).trim();
+                    } else {
+                        break;
+                    }
+                }
+
+                // Procura por OR no nível mais externo (fora de parênteses)
+                let level = 0;
+                let orIndex = -1;
+                for (let i = 0; i < exp.length; i++) {
+                    if (exp[i] === '(') level++;
+                    if (exp[i] === ')') level--;
+                    if (level === 0 && exp.substring(i, i + 4) === ' OR ') {
+                        orIndex = i;
+                        break;
+                    }
+                }
+
+                if (orIndex !== -1) {
+                    // Tem OR: dividir e criar branch
+                    const parts = [];
+                    let current = '';
+                    level = 0;
+
+                    for (let i = 0; i < exp.length; i++) {
+                        if (exp[i] === '(') level++;
+                        if (exp[i] === ')') level--;
+
+                        if (level === 0 && exp.substring(i, i + 4) === ' OR ') {
+                            parts.push(current.trim());
+                            current = '';
+                            i += 3; // pula ' OR '
+                        } else {
+                            current += exp[i];
+                        }
+                    }
+                    if (current.trim()) parts.push(current.trim());
+
+                    const result = ['BST'];
+                    parts.forEach((part, idx) => {
+                        if (idx > 0) result.push('NXB');
+                        const parsed = parseExpression(part);
+                        result.push(...parsed);
+                    });
+                    result.push('BND');
+                    return result;
+                }
+
+                // Procura por AND
+                level = 0;
+                let andIndex = -1;
+                for (let i = 0; i < exp.length; i++) {
+                    if (exp[i] === '(') level++;
+                    if (exp[i] === ')') level--;
+                    if (level === 0 && exp.substring(i, i + 5) === ' AND ') {
+                        andIndex = i;
+                        break;
+                    }
+                }
+
+                if (andIndex !== -1) {
+                    // Tem AND: dividir e processar sequencialmente
+                    const parts = [];
+                    let current = '';
+                    level = 0;
+
+                    for (let i = 0; i < exp.length; i++) {
+                        if (exp[i] === '(') level++;
+                        if (exp[i] === ')') level--;
+
+                        if (level === 0 && exp.substring(i, i + 5) === ' AND ') {
+                            parts.push(current.trim());
+                            current = '';
+                            i += 4; // pula ' AND '
+                        } else {
+                            current += exp[i];
+                        }
+                    }
+                    if (current.trim()) parts.push(current.trim());
+
+                    const result = [];
+                    parts.forEach(part => {
+                        const parsed = parseExpression(part);
+                        result.push(...parsed);
+                    });
+                    return result;
+                }
+
+                // É uma variável simples
+                const v = varMap[exp];
+                if (v) {
+                    return [`${v.instruction} ${v.tag}`];
+                }
+                return [];
+            }
+
+            const result = parseExpression(expr);
+            return result.join(' ');
+        }
+
+        // Construir String de Condição
+        function buildConditionString(condData, type) {
+            if (!condData || !condData.conditions || condData.conditions.length === 0) {
+                return type === 'rockwell' ? 'XIC StepFlag[0].Flag' : '#MyStepFlag.Step000';
+            }
+
+            if (type === 'rockwell') {
+                return convertToRockwellLadder(condData);
+            } else {
+                // Siemens: usa expressão com conversão de StepFlag
+                const expression = condData.expression || 'X1';
+                const conditions = condData.conditions;
+
+                // Cria mapa de variáveis
+                const varMap = {};
+                conditions.forEach(cond => {
+                    let value = convertStepFlagToSiemens(cond.tag);
+                    if (cond.negated) {
+                        value = `NOT ${value}`;
+                    }
+                    varMap[cond.label] = value;
+                });
+
+                // Substitui variáveis na expressão
+                let result = expression;
+
+                // Ordena do maior para o menor (X10 antes de X1)
+                const labels = Object.keys(varMap).sort((a, b) => {
+                    const numA = parseInt(a.substring(1));
+                    const numB = parseInt(b.substring(1));
+                    return numB - numA;
+                });
+
+                labels.forEach(label => {
+                    const regex = new RegExp(label, 'g');
+                    result = result.replace(regex, varMap[label]);
+                });
+
+                return result;
+            }
+        }
+
+        // Renderizar Lista de Condicionais
+        function renderConditionalsList() {
+            if (!currentSelectedStep || !currentSelectedActivation) return;
+
+            const list = document.getElementById('conditionalsList');
+            const conditions = activationConditions[currentSelectedStep][currentSelectedActivation].conditions;
+
+            list.innerHTML = '';
+
+            conditions.forEach((cond, index) => {
+                const div = document.createElement('div');
+                div.className = 'mb-3 p-3 border rounded bg-light';
+                div.innerHTML = `
+                    <div class="row align-items-center">
+                        <div class="col-md-1">
+                            <span class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem;">${cond.label}</span>
+                        </div>
+                        <div class="col-md-7">
+                            <label class="form-label">Tag/Variável</label>
+                            <input type="text" class="form-control font-monospace" value="${cond.tag}"
+                                   ${cond.readonly ? 'readonly' : ''}
+                                   data-index="${index}"
+                                   placeholder="Ex: StepFlag[5].Flag ou MyVariable.Status">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox"
+                                       ${cond.negated ? 'checked' : ''}
+                                       data-index="${index}"
+                                       ${cond.readonly ? 'disabled' : ''}>
+                                <span class="form-check-label">NOT</span>
+                            </label>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            ${cond.readonly ? '<span class="badge bg-info">Obrigatório</span>' : `
+                                <button type="button" class="btn btn-sm btn-danger" onclick="removeConditional(${index})">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        // Adicionar Condicional
+        function addConditional() {
+            if (!currentSelectedStep || !currentSelectedActivation) return;
+
+            const conditions = activationConditions[currentSelectedStep][currentSelectedActivation].conditions;
+
+            // Limite de 6 variáveis
+            if (conditions.length >= 6) {
+                showAlert('Máximo de 6 variáveis atingido!', 'warning');
+                return;
+            }
+
+            // Gera próximo label (X2, X3, X4...)
+            const nextLabel = `X${conditions.length + 1}`;
+
+            conditions.push({
+                label: nextLabel,
+                tag: '',
+                negated: false,
+                readonly: false
+            });
+
+            renderConditionalsList();
+            updateAddButtonState();
+        }
+
+        // Atualizar estado do botão Adicionar
+        function updateAddButtonState() {
+            if (!currentSelectedStep || !currentSelectedActivation) return;
+
+            const conditions = activationConditions[currentSelectedStep][currentSelectedActivation].conditions;
+            const addBtn = document.getElementById('addConditionalBtn');
+
+            if (conditions.length >= 6) {
+                addBtn.disabled = true;
+                addBtn.innerHTML = '<i class="ti ti-lock me-2"></i>Limite Máximo (6)';
+            } else {
+                addBtn.disabled = false;
+                addBtn.innerHTML = '<i class="ti ti-plus me-2"></i>Adicionar Variável';
+            }
+        }
+
+        // Remover Condicional
+        function removeConditional(index) {
+            if (!currentSelectedStep || !currentSelectedActivation) return;
+
+            const conditions = activationConditions[currentSelectedStep][currentSelectedActivation].conditions;
+            conditions.splice(index, 1);
+
+            // Recalcula labels (X1, X2, X3...)
+            conditions.forEach((cond, idx) => {
+                cond.label = `X${idx + 1}`;
+            });
+
+            renderConditionalsList();
+            updateAddButtonState();
+        }
+
+        // Aplicar Condicionais à Ativação
+        function applyConditionalsToStep() {
+            if (!currentSelectedStep || !currentSelectedActivation) return;
+
+            // Atualizar expressão lógica
+            const expression = document.getElementById('logicExpression').value.trim();
+            if (!expression) {
+                showAlert('A expressão lógica não pode estar vazia!', 'warning');
+                return;
+            }
+
+            activationConditions[currentSelectedStep][currentSelectedActivation].expression = expression;
+
+            // Atualizar tags e negações
+            document.querySelectorAll('#conditionalsList input[type="text"]').forEach(input => {
+                const index = parseInt(input.dataset.index);
+                activationConditions[currentSelectedStep][currentSelectedActivation].conditions[index].tag = input.value;
+            });
+
+            document.querySelectorAll('#conditionalsList input[type="checkbox"]').forEach(checkbox => {
+                const index = parseInt(checkbox.dataset.index);
+                activationConditions[currentSelectedStep][currentSelectedActivation].conditions[index].negated = checkbox.checked;
+            });
+
+            updatePreview();
+            showAlert(`Condicionais aplicadas à ativação ${currentSelectedActivation}!`, 'success');
+        }
+
+        // Gerar Arquivo Final
+        async function generateFinalCode() {
+            const outputDir = document.getElementById('outputDir').value || 'output';
+            const phaseInstanceId = document.getElementById('phaseInstanceFilter').value;
+
+            try {
+                // Envia condicionais para ambos os tipos
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        output_dir: outputDir,
+                        phase_instance_id: parseInt(phaseInstanceId),
+                        controller_type: selectedControllerType,
+                        activation_conditions: activationConditions
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(`✅ Códigos gerados com sucesso! ${result.activations_count} ativações processadas`, 'success');
+                    generatedFiles = result.files;
+                    displayGeneratedFiles(result.files, result.controller_type);
+
+                    // Atualiza o campo com o caminho completo retornado
+                    document.getElementById('outputDir').value = result.output_dir;
+
+                    // Fecha modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('previewConditionalsModal'));
+                    modal.hide();
+
+                    // Atualiza info de geração
+                    document.getElementById('generationInfo').innerHTML = `
+                        <div class="alert alert-success mb-0">
+                            <div class="d-flex">
+                                <div>
+                                    <i class="ti ti-check icon alert-icon"></i>
+                                </div>
+                                <div>
+                                    <h4 class="alert-title">Geração Concluída!</h4>
+                                    <div class="text-muted">
+                                        <strong>${result.activations_count}</strong> ativações processadas<br>
+                                        Diretório: <code>${result.output_dir}</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    showAlert('Erro: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Erro ao gerar códigos: ' + error.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="37.00" TargetType="Rung" TargetCount="13" CurrentLanguage="en-US" ContainsContext="true" ExportDate="Fri Nov 14 13:49:23 2025" ExportOptions="References NoRawData L5KData DecoratedData Context RoutineLabels AliasExtras IOTags NoStringData ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="_GEA_Codex">
+<DataTypes Use="Context">
+<DataType Name="PhaseControl_StepFlags" Family="NoFamily" Class="User">
+<Description>
+<LocalizedDescription Lang="en-US">
+<![CDATA[Step Flags for Each Step -]]>
+</LocalizedDescription>
+</Description>
+<Members>
+<Member Name="ZZZZZZZZZZPhaseContr0" DataType="SINT" Dimension="0" Radix="Decimal" Hidden="true" ExternalAccess="Read/Write"/>
+<Member Name="Flag" DataType="BIT" Dimension="0" Radix="Decimal" Hidden="false" Target="ZZZZZZZZZZPhaseContr0" BitNumber="0" ExternalAccess="Read/Write">
+<Description>
+<LocalizedDescription Lang="en-US">
+<![CDATA[- Equal to]]>
+</LocalizedDescription>
+</Description>
+</Member>
+<Member Name="FlagLE" DataType="BIT" Dimension="0" Radix="Decimal" Hidden="false" Target="ZZZZZZZZZZPhaseContr0" BitNumber="1" ExternalAccess="Read/Write">
+<Description>
+<LocalizedDescription Lang="en-US">
+<![CDATA[- Less than or Equal to]]>
+</LocalizedDescription>
+</Description>
+</Member>
+<Member Name="FlagGE" DataType="BIT" Dimension="0" Radix="Decimal" Hidden="false" Target="ZZZZZZZZZZPhaseContr0" BitNumber="2" ExternalAccess="Read/Write">
+<Description>
+<LocalizedDescription Lang="en-US">
+<![CDATA[- Greater than or Equal to]]>
+</LocalizedDescription>
+</Description>
+</Member>
+</Members>
+</DataType>
+</DataTypes>
+<Programs Use="Context">
+<Program Use="Context" Name="Phase01001_SEQ_DF_Master">
+<Tags Use="Context">
+<Tag Name="StepFlag" TagType="Base" DataType="PhaseControl_StepFlags" Dimensions="128" Constant="false" ExternalAccess="Read/Write" OpcUaAccess="None">
+<Comments>
+<Comment Operand="[0]">
+<LocalizedComment Lang="en-US">
+<![CDATA[Idle]]>
+</LocalizedComment>
+</Comment>
+<Comment Operand="[1]">
+<LocalizedComment Lang="en-US">
+<![CDATA[Ativar]]>
+</LocalizedComment>
+</Comment>
+<Comment Operand="[2]">
+<LocalizedComment Lang="en-US">
+<![CDATA[Desativar]]>
+</LocalizedComment>
+</Comment>
+</Comments>
+<Data Format="L5K">
+<![CDATA[[[7],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2],[2]]]]>
+</Data>
+<Data Format="Decorated">
+<Array DataType="PhaseControl_StepFlags" Dimensions="128">
+<Element Index="[0]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="1"/>
+</Structure>
+</Element>
+<Element Index="[1]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[2]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[3]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[4]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[5]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[6]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[7]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[8]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[9]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[10]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[11]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[12]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[13]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[14]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[15]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[16]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[17]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[18]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[19]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[20]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[21]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[22]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[23]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[24]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[25]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[26]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[27]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[28]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[29]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[30]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[31]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[32]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[33]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[34]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[35]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[36]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[37]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[38]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[39]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[40]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[41]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[42]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[43]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[44]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[45]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[46]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[47]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[48]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[49]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[50]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[51]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[52]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[53]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[54]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[55]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[56]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[57]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[58]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[59]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[60]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[61]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[62]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[63]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[64]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[65]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[66]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[67]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[68]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[69]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[70]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[71]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[72]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[73]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[74]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[75]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[76]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[77]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[78]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[79]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[80]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[81]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[82]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[83]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[84]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[85]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[86]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[87]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[88]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[89]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[90]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[91]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[92]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[93]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[94]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[95]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[96]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[97]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[98]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[99]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[100]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[101]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[102]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[103]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[104]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[105]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[106]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[107]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[108]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[109]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[110]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[111]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[112]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[113]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[114]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[115]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[116]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[117]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[118]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[119]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[120]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[121]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[122]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[123]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[124]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[125]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[126]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+<Element Index="[127]">
+<Structure DataType="PhaseControl_StepFlags">
+<DataValueMember Name="Flag" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FlagLE" DataType="BOOL" Value="1"/>
+<DataValueMember Name="FlagGE" DataType="BOOL" Value="0"/>
+</Structure>
+</Element>
+</Array>
+</Data>
+</Tag>
+</Tags>
+<Routines Use="Context">
+<Routine Use="Context" Name="CM_Valve">
+<RLLContent Use="Context">
+<Rung Use="Target" Number="2" Type="N">
+<Comment>
+<LocalizedComment Lang="en-US">
+<![CDATA[--------------------------------------------------------------------------------
+Step 00 -- Idle
+--------------------------------------------------------------------------------]]>
+</LocalizedComment>
+</Comment>
+<Text>
+<![CDATA[NOP();]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="3" Type="N">
+<Comment>
+<LocalizedComment Lang="en-US">
+<![CDATA[--------------------------------------------------------------------------------
+Step 01 -- Ativar
+--------------------------------------------------------------------------------]]>
+</LocalizedComment>
+</Comment>
+<Text>
+<![CDATA[NOP();]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="4" Type="N">
+<Text>
+<![CDATA[[XIC(StepFlag[1].Flag) ,XIC(Teste2) XIC(Teste3) ]OTL(VOC562034.activate);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="5" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(PSV562035.activateUL);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="6" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(PSV562035.activateLL);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="7" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(CIP_TO_ENCH_BYPASS.activate);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="8" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(LCV562001.activate);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="9" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(B562003.activate);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="10" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(LIC562003.closeloop);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="11" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(FIC562001.fixedoutput);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="12" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(LIC562004_Control.closeloop);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="13" Type="N">
+<Text>
+<![CDATA[XIC(StepFlag[1].Flag)OTL(FIQ562001_Dosagem.ResetTotalizer);]]>
+</Text>
+</Rung>
+<Rung Use="Target" Number="14" Type="N">
+<Comment>
+<LocalizedComment Lang="en-US">
+<![CDATA[--------------------------------------------------------------------------------
+Step 02 -- Desativar
+--------------------------------------------------------------------------------]]>
+</LocalizedComment>
+</Comment>
+<Text>
+<![CDATA[NOP();]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+</Controller>
+</RSLogix5000Content>

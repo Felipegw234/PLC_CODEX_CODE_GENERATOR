@@ -1,0 +1,332 @@
+﻿/* ===================================================================
+   SMARTSITE - APPLICATION LAYOUT STYLES v1.0
+   - Este arquivo define a estrutura da aplicação (header, sidebar, etc).
+   - Utiliza os tokens e componentes base definidos no gea-core.css.
+   - Deve ser carregado DEPOIS do gea-core.css.
+   =================================================================== */
+
+/* =========================================
+   1. LAYOUT TOKENS & BASE STRUCTURE
+   ========================================= */
+:root {
+    --header-h: 56px;
+    --sidenav-w: 250px;
+    --sidenav-w-collapsed: 80px;
+    --radius-md: .375rem;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+}
+.page {
+    display: flex;
+    flex-direction: row;
+    flex: 1; /* 'flex: 1' é um atalho limpo para 'flex: 1 1 0%' */
+}
+
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    /* ADICIONE estas duas regras para habilitar o scroll apenas aqui */
+    height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+}
+.layout-horizontal .page-wrapper {
+    /* Altura = tela - header - subheader */
+    height: calc(100vh - var(--header-h) - 48px); /* Ajuste 48px se a altura do seu subheader for diferente */
+}
+
+/* Se você adicionou esta regra, remova a propriedade 'flex: 1' ou 'flex-grow: 1'.
+  O conteúdo principal deve ter sua altura natural.
+*/
+main.page-body {
+    /* REMOVA a linha 'flex: 1;' ou 'flex-grow: 1;' daqui */
+}
+/* =========================================
+   2. APPLICATION COMPONENTS
+   ========================================= */
+
+/* --- 2.1 Header --- */
+.app-header {
+    background: var(--gea-secondary);
+    color: var(--gea-text-primary-darkbg);
+    min-height: var(--header-h);
+    position: sticky; /* Já estava correto */
+    top: 0; /* Já estava correto */
+    z-index: 1020; /* Aumentei um pouco o z-index para garantir */
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-toggler {
+    color: var(--gea-text-primary-darkbg);
+    border-color: rgba(255,255,255,.1);
+}
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+.app-header-icons .nav-link {
+    color: var(--gea-text-primary-darkbg) !important;
+    padding: .5rem .75rem !important;
+    border-radius: var(--radius-md);
+    transition: background-color .2s ease;
+}
+
+    .app-header-icons .nav-link:hover {
+        background-color: rgba(255,255,255,.2);
+    }
+
+/* --- 2.2 Subheader (Layout Horizontal) --- */
+.app-subheader {
+    background: var(--gea-primary);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    z-index: 1019; /* Garante que fique abaixo do header principal */
+    /* ADICIONE estas duas regras para fixá-lo */
+    position: sticky;
+    top: var(--header-h); /* Posição = altura do header principal */
+}
+
+    .app-subheader .navbar {
+        background: transparent !important;
+    }
+
+    .app-subheader .nav-link {
+        color: var(--gea-text-primary-darkbg); /* Força a cor branca */
+        font-weight: 400; /* Garante o peso normal */
+        transition: all .2s ease;
+        text-decoration: none; /* Garante que não haja sublinhado */
+    }
+
+        .app-subheader .nav-link:hover,
+        .app-subheader .nav-link.active {
+            color: rgba(255, 255, 255, .75); /* Cinza claro no hover/ativo */
+         
+        }
+
+/* --- 2.3 Sidenav (Layout Vertical) --- */
+.app-sidenav {
+    width: var(--sidenav-w);
+    background: #e5e7eb;
+    border-right: 1px solid rgba(0,0,0,.05);
+    transition: width .2s ease-in-out;
+    /* ADICIONE estas três regras para fixar a sidebar */
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100vh - var(--header-h)); /* Altura total da tela menos o header */
+}
+
+.app-offcanvas-mobile {
+    top: var(--header-h);
+    height: calc(100vh - var(--header-h));
+}
+
+/* --- 2.4 Sidenav Navigation --- */
+.snav-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .75rem;
+    border-radius: var(--radius-md);
+    color: #334155;
+    cursor: pointer;
+    transition: transform .15s ease,background-color .15s ease,color .15s ease;
+    text-decoration: none; /* Garante a remoção do sublinhado */
+    /* font-weight: 400 */
+}
+
+    .snav-link:hover {
+        background: #d1d5db; /* Cor de hover um pouco mais escura */
+        transform: translateX(2px);
+        text-decoration: none !important;
+    }
+
+    .snav-link.active {
+        background-color: #d1d5db;
+        color: #000F41; /* Cor secundária GEA para destaque */
+        font-weight: 500;
+        text-decoration: none !important;
+    
+    }
+
+    .snav-link > span {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .snav-link .snav-caret {
+        transition: transform .2s ease;
+    }
+
+.snav-group > summary {
+    list-style: none;
+}
+
+    .snav-group > summary::-webkit-details-marker {
+        display: none;
+    }
+
+.snav-group[open] .snav-caret {
+    transform: rotate(90deg);
+}
+
+.snav-sub {
+    margin-left: 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+}
+
+.snav-group[open] > .snav-sub {
+    max-height: 500px;
+}
+
+.snav-sublink {
+    display: block;
+    padding: .35rem .5rem;
+    border-radius: var(--radius-md);
+    color: #475569;
+    transition: background-color .15s ease,transform .15s ease;
+    text-decoration: none !important;
+
+}
+
+    .snav-sublink:hover {
+        background: #e9ecef;
+        transform: translateX(2px);
+        text-decoration: none !important;
+    }
+
+    .snav-sublink.active {
+        background: #e9ecef;
+        color: #000F41;
+        font-weight: 500;
+    }
+
+
+/* --- 2.5 Sidenav States --- */
+.sidebar-collapsed .app-sidenav {
+    width: var(--sidenav-w-collapsed);
+    padding: 0 !important;
+}
+
+.sidebar-collapsed .text-uppercase,
+.sidebar-collapsed .snav-link span,
+.sidebar-collapsed .snav-sub,
+.sidebar-collapsed .snav-caret {
+    display: none;
+}
+
+.sidebar-collapsed .snav-link,
+.sidebar-collapsed .snav-group summary {
+    justify-content: center;
+}
+
+    .sidebar-collapsed .snav-link i {
+        margin-right: 0 !important;
+    }
+
+@media (hover:hover) {
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand {
+        width: var(--sidenav-w);
+        padding: 0 1rem !important;
+    }
+
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .text-uppercase,
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link span,
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-sub,
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-caret {
+            display: initial;
+        }
+
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link,
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-group summary {
+            justify-content: flex-start;
+        }
+
+            .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link i {
+                margin-right: .5rem !important;
+            }
+}
+
+/* =========================================
+   3. SPECIFIC COMPONENT STYLES
+   ========================================= */
+
+/* --- 3.1 Header Search --- */
+.search-form-container {
+    position: relative;
+}
+
+    .search-form-container .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: #6c757d;
+        pointer-events: none;
+    }
+
+    .search-form-container .search-input {
+        width: clamp(220px, 32vw, 420px); /* Largura fluida com limites */
+        height: 36px;
+        padding-left: 36px;
+        border-radius: 4px;
+        border: 1px solid var(--gea-border);
+    }
+
+        .search-form-container .search-input:focus {
+            border-color: var(--gea-active-blue);
+            box-shadow: 0 0 0 2px rgba(31,157,255,.25);
+        }
+
+/* --- 3.2 User Menu Dropdown --- */
+.dropdown-menu {
+    background-color: var(--gea-surface-contrast) !important;
+}
+
+.dropdown-item-text {
+    padding: .5rem 1rem;
+}
+
+.dropdown-menu .form-select-sm {
+    font-size: .8rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.dropdown-menu .form-switch {
+    padding-left: 3em;
+}
+
+    .dropdown-menu .form-switch .form-check-input {
+        margin-left: -3em;
+    }
+
+.dropdown-menu .form-check-label {
+    width: 60px;
+}
+.btn-alocar {
+    background-color: var(--tblr-green);
+    color: white;
+    border-color: var(--tblr-green);
+}
+
+    .btn-alocar:hover {
+        background-color: var(--tblr-green-lighter);
+        color: var(--tblr-green);
+        border-color: var(--tblr-green);
+    }
+
+.btn-desalocar {
+    background-color: var(--tblr-red);
+    color: white;
+    border-color: var(--tblr-red);
+}
+
+    .btn-desalocar:hover {
+        background-color: var(--tblr-red-lighter);
+        color: var(--tblr-red);
+        border-color: var(--tblr-red);
+    }

@@ -1,0 +1,26 @@
+================================================================================
+Código Ladder Gerado Automaticamente
+Data: 2025-11-14 13:49:23
+================================================================================
+
+--------------------------------------------------------------------------------
+Step 00 -- Idle
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Step 01 -- Ativar
+--------------------------------------------------------------------------------
+BST XIC StepFlag[1].Flag NXB XIC Teste2 XIC Teste3 BND OTL VOC562034.activate
+XIC StepFlag[1].Flag OTL PSV562035.activateUL
+XIC StepFlag[1].Flag OTL PSV562035.activateLL
+XIC StepFlag[1].Flag OTL CIP_TO_ENCH_BYPASS.activate
+XIC StepFlag[1].Flag OTL LCV562001.activate
+XIC StepFlag[1].Flag OTL B562003.activate
+XIC StepFlag[1].Flag OTL LIC562003.closeloop
+XIC StepFlag[1].Flag OTL FIC562001.fixedoutput
+XIC StepFlag[1].Flag OTL LIC562004_Control.closeloop
+XIC StepFlag[1].Flag OTL FIQ562001_Dosagem.ResetTotalizer
+
+--------------------------------------------------------------------------------
+Step 02 -- Desativar
+--------------------------------------------------------------------------------

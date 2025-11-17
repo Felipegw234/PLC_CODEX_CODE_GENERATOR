@@ -1,0 +1,11 @@
+# Dependências do Gerador de Código PLC
+
+# Framework Web
+Flask==3.0.0
+flask-cors==4.0.0
+
+# Banco de Dados
+pyodbc==5.0.1
+
+# Servidor de Produção (opcional)
+waitress==2.1.2

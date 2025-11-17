@@ -1,0 +1,37 @@
+{
+    "type_mapping": {
+        "0": "V",
+        "1": "V",
+        "2": "V",
+        "6": "AO",
+        "7": "DO",
+        "8": "PID",
+        "10": "Comm",
+        "13": "VSD",
+        "14": "TOT"
+    },
+    "suffix_mapping": {
+        "0": ".activate",
+        "1": ".activateLL",
+        "2": ".activateUL",
+        "6": ".activate",
+        "7": ".activate",
+        "8": {
+            "pid_type_4": ".fixedoutput",
+            "pid_type_other": ".closedloop"
+        },
+        "10": "",
+        "13": ".activate",
+        "14": {
+            "pid_type_2": ".ResetTotalizer",
+            "pid_type_other": ".EnableTotalizer"
+        }
+    },
+    "pid_type_mapping": {
+        "0": "N",
+        "1": "S",
+        "2": "R",
+        "3": "SP",
+        "4": "FO"
+    }
+}

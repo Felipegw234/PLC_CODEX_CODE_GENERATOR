@@ -1,0 +1,202 @@
+/* ===================================================================
+   GEA CORE STYLES v1.0
+   - Este arquivo define a identidade visual e componentes base da GEA.
+   - Não deve conter regras de layout da aplicação principal.
+   - Deve ser carregado ANTES do site.css.
+   =================================================================== */
+
+/* =========================================
+   1. TOKENS & DESIGN VARIABLES (Single Source of Truth)
+   ========================================= */
+:root {
+    /* Cores Primárias GEA */
+    --gea-primary: #0303B8;
+    --gea-primary-rgb: 3, 3, 184;
+    --gea-secondary: #000F41;
+    --gea-secondary-rgb: 0, 15, 65;
+    /* Cores de Destaque GEA */
+    --gea-active-blue: #1F9DFF;
+    --gea-active-blue-rgb: 31, 157, 255;
+    --gea-active-green: #1AFF80;
+    --gea-active-green-rgb: 26, 255, 128;
+    --gea-energetic-pink: #FF80FF;
+    --gea-energetic-pink-rgb: 255, 128, 255;
+    /* Cores Neutras GEA */
+    --gea-white: #FFFFFF;
+    --gea-white-rgb: 255, 255, 255;
+    --gea-surface: #F5F5F5;
+    --gea-surface-contrast: #ffffff; /* Para dropdowns, etc. */
+    --gea-border: #DCDCDC;
+    --gea-text-primary: #141414;
+    --gea-text-secondary: #505050;
+    --gea-text-muted: #646464;
+    --gea-text-primary-darkbg: #ffffff;
+    --gea-text-secondary-darkbg: rgba(255,255,255,.75);
+    /* Tipografia */
+    --font-family-gea: "Segoe UI","Segoe UI Web (West European)",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    --app-vh: 100dvh;
+}
+
+/* =========================================
+   2. BASE & TYPOGRAPHY
+   ========================================= */
+body, html {
+    height: 100%;
+    min-height: var(--app-vh);
+}
+
+body {
+    background-color: var(--gea-surface);
+    font-family: var(--font-family-gea);
+    color: var(--gea-text-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* =========================================
+   3. GEA COMPONENTS (Layout-Agnostic)
+   ========================================= */
+
+/* --- 3.1 Forms --- */
+.form-control:focus {
+    border-color: var(--gea-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--gea-primary-rgb), 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--gea-primary);
+    border-color: var(--gea-primary);
+}
+
+/* --- 3.2 Alerts --- */
+.alert-gea-success {
+    background-color: rgba(var(--gea-active-green-rgb), 0.1);
+    border-color: var(--gea-active-green);
+    color: var(--gea-active-green);
+}
+
+.alert-gea-info {
+    background-color: rgba(var(--gea-active-blue-rgb), 0.1);
+    border-color: var(--gea-active-blue);
+    color: var(--gea-active-blue);
+}
+
+/* --- 3.3 Status Badges --- */
+.gea-status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.gea-status-active {
+    background-color: rgba(var(--gea-active-green-rgb), 0.1);
+    color: var(--gea-active-green);
+}
+
+/* =========================================
+   4. UTILITIES
+   ========================================= */
+.text-gea-primary {
+    color: var(--gea-primary) !important;
+}
+
+.bg-gea-primary {
+    background-color: var(--gea-primary) !important;
+}
+
+.text-gea-secondary {
+    color: var(--gea-secondary) !important;
+}
+
+.bg-gea-secondary {
+    background-color: var(--gea-secondary) !important;
+}
+
+/* =========================================
+   5. DEPRECATED / PENDING REVIEW
+   ========================================= */
+
+/*
+   -- REMOÇÃO SUGERIDA --
+   Motivo: O layout principal da aplicação (header/sidebar/conteúdo) foi
+   reconstruído no site.css usando a arquitetura Flexbox do Tabler,
+   que é mais moderna e flexível. As regras abaixo usam uma abordagem
+   de `margin` que entra em conflito direto com o novo sistema.
+
+.gea-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.gea-main-content {
+    flex: 1 0 auto;
+    margin-left: var(--sidebar-width);
+    margin-top: var(--header-height);
+}
+
+@media (max-width: 768px) {
+    .gea-main-content {
+        margin-left: 0;
+    }
+}
+*/
+
+/*
+   -- VERIFICAR POSSIBILIDADE DE REMOÇÃO --
+   Motivo: Este seletor de idioma foi substituído por um componente
+   do Tabler (TomSelect) no layout principal. Manter apenas se for
+   utilizado em outras áreas do sistema, como tela de login. */
+
+/* =========================================
+   Component Styles: Language Selector (VERSÃO CORRIGIDA)
+   ========================================= */
+.gea-lang-selector {
+    background: none !important;
+    border: 1px solid rgba(var(--gea-white-rgb), 0.3) !important;
+    border-radius: 4px !important;
+    padding: 4px 8px !important;
+    min-width: 50px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    color: var(--gea-white) !important;
+}
+
+    .gea-lang-selector:hover,
+    .gea-lang-selector:focus,
+    .gea-lang-selector.show {
+        background: rgba(var(--gea-white-rgb), 0.1) !important;
+        border-color: rgba(var(--gea-white-rgb), 0.5) !important;
+        box-shadow: none !important;
+    }
+
+    .gea-lang-selector::after {
+        margin-left: 0.5rem;
+    }
+
+.gea-lang-menu {
+    min-width: 80px !important;
+    border-radius: 6px;
+    border: 1px solid var(--gea-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 4px 0;
+}
+
+    /* Correção: Aumentamos a especificidade para garantir que estas regras sejam aplicadas */
+    .gea-lang-menu .gea-lang-item {
+        background: var(--gea-white) !important;
+        color: var(--gea-text-primary) !important;
+    }
+
+        .gea-lang-menu .gea-lang-item:hover:not(.active) {
+            background: var(--gea-surface) !important; /* Fundo cinza claro no hover */
+            color: var(--gea-text-primary) !important; /* Texto escuro no hover */
+        }
+
+        .gea-lang-menu .gea-lang-item.active {
+            background: var(--gea-secondary) !important; /* Fundo azul escuro para o ativo */
+            color: var(--gea-white) !important; /* Texto branco para o ativo */
+        }

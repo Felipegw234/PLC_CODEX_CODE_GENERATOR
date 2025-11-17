@@ -1,0 +1,215 @@
+;================================================================================
+; Código Ladder Gerado Automaticamente
+; Data: 2025-11-12 16:52:25
+;================================================================================
+
+; --------------------------------------------------------------------------------
+; Step 10 -- Esvaziar BTD
+; --------------------------------------------------------------------------------
+XIC StepFlag[10].Flag OTL PH_BTD_DRENO_REQ_START
+
+; --------------------------------------------------------------------------------
+; Step 15 -- Encher Sistema
+; --------------------------------------------------------------------------------
+XIC StepFlag[15].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[15].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[15].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[15].Flag OTL PAST_TO_BLENDER_AGUA
+XIC StepFlag[15].Flag OTL FIC562003
+XIC StepFlag[15].Flag OTL FIC562003
+XIC StepFlag[15].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 16 -- Enxague enchedora
+; --------------------------------------------------------------------------------
+XIC StepFlag[16].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[16].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[16].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[16].Flag OTL PAST_TO_BLENDER_AGUA
+XIC StepFlag[16].Flag OTL FIC562003
+XIC StepFlag[16].Flag OTL FIC562003
+XIC StepFlag[16].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 20 -- Aquecimento e estabilização
+; --------------------------------------------------------------------------------
+XIC StepFlag[20].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[20].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[20].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[20].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[20].Flag OTL FIC562003
+XIC StepFlag[20].Flag OTL FIC562003
+XIC StepFlag[20].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 21 -- Aquecimento enchedora
+; --------------------------------------------------------------------------------
+XIC StepFlag[21].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[21].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[21].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[21].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[21].Flag OTL FIC562003
+XIC StepFlag[21].Flag OTL FIC562003
+XIC StepFlag[21].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 25 -- Esvaziar BTD
+; --------------------------------------------------------------------------------
+XIC StepFlag[25].Flag OTL PH_BTD_DRENO_REQ_START
+XIC StepFlag[25].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[25].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[25].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[25].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[25].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[25].Flag OTL PH_PAST_REC_REQ_CONTROL
+
+; --------------------------------------------------------------------------------
+; Step 26 -- Encher o BTD
+; --------------------------------------------------------------------------------
+XIC StepFlag[26].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[26].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[26].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[26].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[26].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[26].Flag OTL PH_PAST_REC_REQ_CONTROL
+
+; --------------------------------------------------------------------------------
+; Step 27 -- Empurre Agua com Produto
+; --------------------------------------------------------------------------------
+XIC StepFlag[27].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[27].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[27].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[27].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[27].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[27].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[27].Flag OTL FIC562003
+XIC StepFlag[27].Flag OTL FIC562003
+XIC StepFlag[27].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 30 -- Recirculação
+; --------------------------------------------------------------------------------
+XIC StepFlag[30].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[30].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[30].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[30].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[30].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[30].Flag OTL PAST_TO_BLENDER_PROD
+XIC StepFlag[30].Flag OTL PAST_TO_ENCH_ENABLE_PRODUCT
+XIC StepFlag[30].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[30].Flag OTL FIC562003
+XIC StepFlag[30].Flag OTL FIC562003
+XIC StepFlag[30].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 35 -- Envasando
+; --------------------------------------------------------------------------------
+XIC StepFlag[35].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[35].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[35].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[35].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[35].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[35].Flag OTL PAST_TO_BLENDER_PROD
+XIC StepFlag[35].Flag OTL PAST_TO_ENCH_ENABLE_PRODUCT
+XIC StepFlag[35].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[35].Flag OTL FIC562003
+XIC StepFlag[35].Flag OTL FIC562003
+XIC StepFlag[35].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 40 -- Crash Cooling
+; --------------------------------------------------------------------------------
+XIC StepFlag[40].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[40].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[40].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[40].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[40].Flag OTL PAST_TO_ENCH_IN_CRASH_COOLING
+XIC StepFlag[40].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[40].Flag OTL FIC562003
+XIC StepFlag[40].Flag OTL FIC562003
+XIC StepFlag[40].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 45 -- Esvaziar BTD
+; --------------------------------------------------------------------------------
+XIC StepFlag[45].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[45].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[45].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[45].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[45].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[45].Flag OTL FIC562003
+XIC StepFlag[45].Flag OTL FIC562003
+XIC StepFlag[45].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 46 -- Drenagem BTD
+; --------------------------------------------------------------------------------
+XIC StepFlag[46].Flag OTL PH_BTD_DRENO_REQ_START
+XIC StepFlag[46].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[46].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[46].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[46].Flag OTL PH_PAST_REC_REQ_CONTROL
+
+; --------------------------------------------------------------------------------
+; Step 50 -- Empurre final
+; --------------------------------------------------------------------------------
+XIC StepFlag[50].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[50].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[50].Flag OTL PH_PAST_AQ_REQ_START
+XIC StepFlag[50].Flag OTL PH_PAST_RES_REQ_START
+XIC StepFlag[50].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[50].Flag OTL PAST_TO_BLENDER_AGUA
+XIC StepFlag[50].Flag OTL PH_PAST_REC_REQ_CONTROL
+XIC StepFlag[50].Flag OTL FIC562003
+XIC StepFlag[50].Flag OTL FIC562003
+XIC StepFlag[50].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 51 -- Aguardando Enxague
+; --------------------------------------------------------------------------------
+XIC StepFlag[51].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[51].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[51].Flag OTL PH_BTD_EMP_REQ_START
+
+; --------------------------------------------------------------------------------
+; Step 55 -- Enxague
+; --------------------------------------------------------------------------------
+XIC StepFlag[55].Flag OTL PH_BTD_ENT_REQ_START
+XIC StepFlag[55].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[55].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[55].Flag OTL PAST_TO_BLENDER_AGUA
+XIC StepFlag[55].Flag OTL FIC562003
+XIC StepFlag[55].Flag OTL FIC562003
+XIC StepFlag[55].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 56 -- Esvaziamento
+; --------------------------------------------------------------------------------
+XIC StepFlag[56].Flag OTL PH_BTD_DRENO_REQ_START
+XIC StepFlag[56].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[56].Flag OTL PH_BTD_EMP_REQ_START
+
+; --------------------------------------------------------------------------------
+; Step 57 -- Drenagem final
+; --------------------------------------------------------------------------------
+XIC StepFlag[57].Flag OTL PH_BTD_DRENO_REQ_START
+XIC StepFlag[57].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[57].Flag OTL PH_BTD_EMP_REQ_START
+
+; --------------------------------------------------------------------------------
+; Step 80 -- Em coleta de amostra
+; --------------------------------------------------------------------------------
+XIC StepFlag[80].Flag OTL PH_BTD_REC_REQ_START
+XIC StepFlag[80].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[80].Flag OTL PH_BTD_EMP_REQ_START
+XIC StepFlag[80].Flag OTL PAST_TO_BLENDER_AGUA
+XIC StepFlag[80].Flag OTL FIC562003
+XIC StepFlag[80].Flag OTL FIC562003
+XIC StepFlag[80].Flag OTL B562007
+
+; --------------------------------------------------------------------------------
+; Step 81 -- Drenagem pos amostra
+; --------------------------------------------------------------------------------
+XIC StepFlag[81].Flag OTL PH_BTD_DRENO_REQ_START
+XIC StepFlag[81].Flag OTL PH_PAST_REC_REQ_START
+XIC StepFlag[81].Flag OTL PH_BTD_EMP_REQ_START
