@@ -228,13 +228,15 @@ class DatabaseConnection:
         """
 
         # Adiciona filtro de Phase Instance se especificado
+        params = []
         if phase_instance_id is not None:
-            query += f" AND t3.iID = {phase_instance_id}"
+            query += " AND t3.iID = ?"
+            params.append(phase_instance_id)
 
         query += " ORDER BY t2.iIndexNo, t1.iStepNo"
 
         cursor = self.connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query, params)
 
         activations = []
         for row in cursor.fetchall():
